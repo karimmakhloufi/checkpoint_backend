@@ -1,22 +1,20 @@
 import Book from "../entity/book";
-import { Query, Resolver } from "type-graphql";
-
-const books = [
-  {
-    title: "The Awakening",
-    author: "Kate Chopin",
-  },
-  {
-    title: "City of Glass",
-    author: "Paul Auster",
-  },
-];
+import { Arg, Mutation, Query, Resolver } from "type-graphql";
 
 Resolver(Book);
 class BookResolver {
   @Query(() => [Book])
   async getAllBooks() {
-    return books;
+    return Book.find();
+  }
+
+  @Mutation(() => Book)
+  async createNewBook(
+    @Arg("author") author: string,
+    @Arg("title") title: string
+  ) {
+    const result = await Book.save({ author, title });
+    return result;
   }
 }
 export default BookResolver;
