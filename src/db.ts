@@ -1,12 +1,12 @@
 import { DataSource } from "typeorm";
-import Book from "./entity/book";
+import Country from "./entity/country";
 
 const dataSource = new DataSource({
   type: "sqlite",
-  database: "books.sqlite",
+  database: "countries.sqlite",
   synchronize: true,
   logging: ["error", "query"],
-  entities: [Book],
+  entities: [Country],
 });
 
 export default dataSource;

@@ -3,18 +3,26 @@ import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @ObjectType()
 @Entity()
-class Book extends BaseEntity {
+class Country extends BaseEntity {
   @Field()
   @PrimaryGeneratedColumn()
   id: number;
 
   @Field()
   @Column()
-  author: string;
+  code: string;
 
   @Field()
   @Column()
-  title: string;
+  name: string;
+
+  @Field()
+  @Column()
+  flag: string;
+
+  @Field()
+  @Column({ default: "EU" })
+  continent: string;
 }
 
-export default Book;
+export default Country;
